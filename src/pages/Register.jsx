@@ -2,6 +2,7 @@ import { useState } from 'react';
 import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import {backend_URL} from "../../constant.js";
 
 export default function Register() {
     const [email, setEmail] = useState('');
@@ -10,7 +11,7 @@ export default function Register() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        await axios.post('http://localhost:5000/api/auth/register', { email, password });
+        await axios.post(`${backend_URL}api/auth/register`, { email, password });
         navigate('/');
     };
 

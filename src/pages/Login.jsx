@@ -2,6 +2,7 @@ import { useState } from 'react';
 import axios from 'axios';
 import {Link, useNavigate} from 'react-router-dom';
 import { motion } from 'framer-motion';
+import {backend_URL} from "../../constant.js";
 
 export default function Login() {
     const [email, setEmail] = useState('');
@@ -10,7 +11,7 @@ export default function Login() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const res = await axios.post('http://localhost:5000/api/auth/login', { email, password });
+        const res = await axios.post(`${backend_URL}api/auth/login`, { email, password });
         localStorage.setItem('token', res.data.token);
         navigate('/dashboard');
     };

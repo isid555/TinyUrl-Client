@@ -3,6 +3,7 @@ import axios from 'axios';
 import { QRCodeCanvas } from 'qrcode.react';
 import { Bar } from 'react-chartjs-2';
 import { motion } from 'framer-motion';
+import {backend_URL} from "../../constant.js";
 import {
     Chart as ChartJS,
     CategoryScale,
@@ -21,7 +22,7 @@ export default function Dashboard() {
     const [urls, setUrls] = useState([]);
 
     const fetchUrls = async () => {
-        const res = await axios.get('http://localhost:5000/api/url/history', {
+        const res = await axios.get(`${backend_URL}api/url/history`, {
             headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
         });
         setUrls(res.data);
@@ -33,7 +34,7 @@ export default function Dashboard() {
 
     const handleShorten = async (e) => {
         e.preventDefault();
-        await axios.post('http://localhost:5000/api/url/shorten', { originalUrl, customAlias }, {
+        await axios.post(`${backend_URL}api/url/shorten`, { originalUrl, customAlias }, {
             headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
         });
         setOriginalUrl('');
@@ -110,15 +111,15 @@ export default function Dashboard() {
                     {urls.map((url) => (
                         <div key={url._id} className="p-4 border border-silver-500 rounded-xl bg-black">
                             <p><strong className="text-silver-500">Original:</strong> <a className="underline hover:text-white" href={url.originalUrl}>{url.originalUrl}</a></p>
-                            <p><strong className="text-silver-500">Short:</strong> <a className="underline hover:text-white" href={`http://localhost:5000/u/${url.shortId}`} target="_blank" rel="noopener noreferrer">http://localhost:5000/u/{url.shortId}</a></p>
+                            <p><strong className="text-silver-500">Short:</strong> <a className="underline hover:text-white" href={`${backend_URL}u/${url.shortId}`} target="_blank" rel="noopener noreferrer">{backend_URL}u/{url.shortId}</a></p>
                             <button
-                                onClick={() => handleCopy(`http://localhost:5000/u/${url.shortId}`)}
+                                onClick={() => handleCopy(`${backend_URL}u/${url.shortId}`)}
                                 className="mt-2 text-sm text-silver-500 hover:text-white underline"
                             >
                                 📋 Copy to Clipboard
                             </button>
                             <div className="mt-4">
-                                <QRCodeCanvas value={`http://localhost:5000/u/${url.shortId}`} size={100} fgColor="#C0C0C0" bgColor="#000000" />
+                                <QRCodeCanvas value={`${backend_URL}u/${url.shortId}`} size={100} fgColor="#C0C0C0" bgColor="#000000" />
                             </div>
                             <p className="mt-2 text-sm text-silver-500"><strong>🔁 Clicks:</strong> {url.clicks}</p>
                         </div>
