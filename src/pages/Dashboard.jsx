@@ -3,6 +3,7 @@ import axios from 'axios';
 import { QRCodeCanvas , QRCodeSVG } from 'qrcode.react';
 import { Bar } from 'react-chartjs-2';
 import { motion } from 'framer-motion';
+import { toast } from 'react-toastify';
 import {backend_URL} from "../../constant.js";
 import {
     Chart as ChartJS,
@@ -35,12 +36,19 @@ export default function Dashboard() {
 
     const handleShorten = async (e) => {
         e.preventDefault();
-        await axios.post(`${backend_URL}api/url/shorten`, { originalUrl, customAlias }, {
-            headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
-        });
-        setOriginalUrl('');
-        setCustomAlias('');
-        fetchUrls();
+        try {
+            await axios.post(`${backend_URL}api/url/shorten`, { originalUrl, customAlias }, {
+                headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
+            });
+            setOriginalUrl('');
+            setCustomAlias('');
+            fetchUrls();
+            // toast.success("URL shortened successfully!");
+        } catch (error) {
+            console.error(error);
+            const msg = error?.response?.data?.msg || "Something went wrong!";
+            toast.error(msg);
+        }
     };
 
     const handleCopy = async (text) => {
@@ -88,7 +96,7 @@ export default function Dashboard() {
                 <input
                     type="text"
                     value={customAlias}
-                    onChange={(e) => setCustomAlias(e.target.value)}
+                    onChange={(e) => setCustomAlias(e.target.value.replace(/\s+/g, '_'))}
                     placeholder="Custom alias"
                     className="w-full md:w-1/4 px-4 py-2 rounded bg-black border border-silver-500 text-white placeholder-silver-500 focus:outline-none focus:ring-2 focus:ring-silver-500"
                     required
