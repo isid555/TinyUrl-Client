@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-// import QRCode from 'qrcode.react';
+import { QRCodeCanvas } from 'qrcode.react';
+import { QRCodeSVG } from 'qrcode.react';
 import { Bar } from 'react-chartjs-2';
 import {
     Chart as ChartJS,
@@ -72,7 +73,7 @@ export default function Dashboard() {
                         <p><strong>Short:</strong> <a className="text-green-600" href={`http://localhost:5000/u/${url.shortId}`} target="_blank" rel="noopener noreferrer">http://localhost:5000/u/{url.shortId}</a></p>
                         <button onClick={() => handleCopy(`http://localhost:5000/u/${url.shortId}`)} className="text-sm text-blue-700">Copy</button>
                         <div className="mt-2">
-                            {/*<QRCode value={`http://localhost:5000/u/${url.shortId}`} size={128} />*/}
+                            <QRCodeCanvas value={`http://localhost:5000/u/${url.shortId}`} size={128} />
                         </div>
                         <p className="mt-2"><strong>Clicks:</strong> {url.clicks}</p>
                     </div>
