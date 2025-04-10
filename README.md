@@ -1,12 +1,77 @@
-# React + Vite
+# ✨ Tiny URL , a URL Shortener Dashboard
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern, minimalistic full-stack URL shortener and analytics platform.  
+Users can shorten long URLs, create custom aliases, generate QR codes, and view analytics in a beautiful dashboard interface.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Demo
 
-## Expanding the ESLint configuration
+Frontend: https://tiny-url-ochre.vercel.app/ 
 
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+
+Backend Test URL:
+1. https://turll.up.railway.app/ on Railway for higher performance 🚀.
+2. https://tinyurl-backend-i7ia.onrender.com/ on Render .
+
+Refer https://github.com/isid555/TinyUrl-Backend for backend server code !
+
+---
+
+## 🧠 Tech Stack
+
+### 🌐 Frontend
+- **React.js** – [React](https://reactjs.org/)
+- **Tailwind CSS** – [Tailwind](https://tailwindcss.com/)
+- **Framer Motion** (for animations) – [Framer Motion](https://www.framer.com/motion/)
+- **Chart.js + react-chartjs-2** (for analytics) – [Chart.js](https://www.chartjs.org/)
+- **qrcode.react** (QR code generation) – [QRCode.react](https://github.com/zpao/qrcode.react)
+- **Lucide React** (icons) – [Lucide](https://lucide.dev/)
+
+### 🔧 Backend
+- **Node.js & Express.js** – REST API
+- **MongoDB** – Persistent storage for URL mappings and click tracking
+- **JWT Auth** – Secure authentication
+- **Deployed on Railway and Render**
+
+---
+
+## 📦 Features
+
+- 🔗 Shorten any long URL instantly
+- 📝 Optional custom alias (e.g., ` https://turll.up.railway.app/u/Master_Intro_bgm`)
+- 📈 Analytics dashboard with click stats
+- 📊 Bar chart visualization for clicks
+- 📎 Copy-to-clipboard functionality
+- 📷 Built-in QR code for each short link
+- 🔐 Secure user-based URL history (JWT auth)
+- 💻 Clean, dark, minimal UI with motion animations
+
+---
+
+---
+
+## 📸 Screenshots
+
+### 1. 🔐 Login Page
+Login using pre-built test credentials (JWT-based auth).  
+
+![img_2.png](img_2.png)
+
+---
+
+### 2. 📊 Dashboard
+Fully responsive dashboard showing shortened links, QR codes, and click analytics.  
+
+![img.png](img.png) 
+![img_1.png](img_1.png)
+
+
+
+---
+
+## 🤝 Contributing
+
+Built with patience, pixels, and purpose. If you found this project helpful, consider leaving a ⭐ — it means a lot!
+
+
