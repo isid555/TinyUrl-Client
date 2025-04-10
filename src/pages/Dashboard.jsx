@@ -13,6 +13,7 @@ import {
     Tooltip,
     Legend
 } from 'chart.js';
+import Footer from "../components/Footer.jsx";
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
@@ -161,6 +162,7 @@ export default function Dashboard() {
             <p className="mt-10 text-center text-sm text-silver-500 italic">
                 "Every click tells a story. Understand how your links perform and grow your digital presence."
             </p>
+            <Footer/>
         </div>
     );
 }

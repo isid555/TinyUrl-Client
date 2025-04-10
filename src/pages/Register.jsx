@@ -2,21 +2,32 @@ import { useState } from 'react';
 import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import {backend_URL} from "../../constant.js";
+import { backend_URL } from "../../constant.js";
+import LoadingOverlay from '../components/LoadingOverlay.jsx';
 
 export default function Register() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [isLoading, setIsLoading] = useState(false);
     const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        await axios.post(`${backend_URL}api/auth/register`, { email, password });
-        navigate('/');
+        try {
+            setIsLoading(true);
+            await axios.post(`${backend_URL}api/auth/register`, { email, password });
+            navigate('/');
+        } catch (err) {
+            console.error(err);
+            alert('Registration failed. Try a different email or try again.');
+        } finally {
+            setIsLoading(false);
+        }
     };
 
     return (
         <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-br from-black via-gray-900 to-black text-gray-100 font-sans">
+            {isLoading && <LoadingOverlay />}
             <motion.form
                 onSubmit={handleSubmit}
                 initial={{ opacity: 0, y: 20 }}
@@ -56,7 +67,6 @@ export default function Register() {
                     </Link>
                 </p>
             </motion.form>
-
         </div>
     );
 }
