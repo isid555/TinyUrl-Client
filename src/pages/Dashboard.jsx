@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { QRCodeCanvas } from 'qrcode.react';
+import { QRCodeCanvas , QRCodeSVG } from 'qrcode.react';
 import { Bar } from 'react-chartjs-2';
 import { motion } from 'framer-motion';
 import {backend_URL} from "../../constant.js";
@@ -119,8 +119,11 @@ export default function Dashboard() {
                             >
                                 📋 Copy to Clipboard
                             </button>
-                            <div className="mt-4">
-                                <QRCodeCanvas value={`${backend_URL}u/${url.shortId}`} size={100} fgColor="#C0C0C0" bgColor="#000000" />
+                            <div className="mt-4 ">
+                                <QRCodeCanvas value={`${backend_URL}u/${url.shortId}`} size={130}  fgColor="#000000"
+                                              bgColor="#ffffff"
+                                              includeMargin={true}
+                                              level="H" />
                             </div>
                             <p className="mt-2 text-sm text-silver-500"><strong>🔁 Clicks:</strong> {url.clicks}</p>
                         </div>
