@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { QRCodeCanvas } from 'qrcode.react';
-import { QRCodeSVG } from 'qrcode.react';
 import { Bar } from 'react-chartjs-2';
+import { motion } from 'framer-motion';
 import {
     Chart as ChartJS,
     CategoryScale,
@@ -52,37 +52,114 @@ export default function Dashboard() {
             {
                 label: 'Clicks',
                 data: urls.map((url) => url.clicks),
-                backgroundColor: 'rgba(21,136,6,0.6)',
+                backgroundColor: '#C0C0C0', // silver
             },
         ],
     };
 
     return (
-        <div className="min-h-screen p-8 bg-gray-50">
-            <h1 className="text-3xl font-bold mb-6">Dashboard</h1>
-            <form onSubmit={handleShorten} className="flex flex-col md:flex-row gap-2 mb-6">
-                <input type="url" value={originalUrl} onChange={(e) => setOriginalUrl(e.target.value)} placeholder="Enter long URL" className="flex-1 p-2 border" required />
-                <input type="text" value={customAlias} onChange={(e) => setCustomAlias(e.target.value)} placeholder="Custom alias" className="w-40 p-2 border" required />
-                <button type="submit" className="bg-blue-600 text-white px-4 py-2 rounded">Shorten</button>
-            </form>
-            <div className="bg-white rounded shadow p-4 mb-6">
-                <h2 className="text-xl font-semibold mb-4">Your URLs</h2>
-                {urls.map((url) => (
-                    <div key={url._id} className="mb-4 border-b pb-4">
-                        <p><strong>Original:</strong> <a className="text-blue-500" href={url.originalUrl}>{url.originalUrl}</a></p>
-                        <p><strong>Short:</strong> <a className="text-green-600" href={`http://localhost:5000/u/${url.shortId}`} target="_blank" rel="noopener noreferrer">http://localhost:5000/u/{url.shortId}</a></p>
-                        <button onClick={() => handleCopy(`http://localhost:5000/u/${url.shortId}`)} className="text-sm text-blue-700">Copy</button>
-                        <div className="mt-2">
-                            <QRCodeCanvas value={`http://localhost:5000/u/${url.shortId}`} size={128} />
+        <div className="min-h-screen px-6 md:px-16 py-10 bg-black text-white font-sans">
+            <motion.h1
+                initial={{ opacity: 0, y: -30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8 }}
+                className="text-4xl font-extrabold text-center mb-10 text-silver-500"
+            >
+                ✨ Your Monochrome URL Dashboard ✨
+            </motion.h1>
+
+            <motion.form
+                onSubmit={handleShorten}
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.3, duration: 0.8 }}
+                className="flex flex-col md:flex-row gap-4 items-center justify-center mb-12"
+            >
+                <input
+                    type="url"
+                    value={originalUrl}
+                    onChange={(e) => setOriginalUrl(e.target.value)}
+                    placeholder="Paste your long URL here..."
+                    className="w-full md:w-1/2 px-4 py-2 rounded bg-black border border-silver-500 text-white placeholder-silver-500 focus:outline-none focus:ring-2 focus:ring-silver-500"
+                    required
+                />
+                <input
+                    type="text"
+                    value={customAlias}
+                    onChange={(e) => setCustomAlias(e.target.value)}
+                    placeholder="Custom alias"
+                    className="w-full md:w-1/4 px-4 py-2 rounded bg-black border border-silver-500 text-white placeholder-silver-500 focus:outline-none focus:ring-2 focus:ring-silver-500"
+                    required
+                />
+                <button
+                    type="submit"
+                    className="px-6 py-2 rounded bg-gray-300 text-black font-semibold hover:bg-gray-100 hover:scale-105 transition-all shadow-xl"
+                >
+                    🚀 Shorten
+                </button>
+            </motion.form>
+
+            <motion.div
+                className="bg-black border border-silver-500 rounded-xl p-6 mb-10 shadow-xl"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.6, duration: 1 }}
+            >
+                <h2 className="text-2xl font-semibold mb-6 text-silver-500">🔗 Your Shortened URLs</h2>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    {urls.map((url) => (
+                        <div key={url._id} className="p-4 border border-silver-500 rounded-xl bg-black">
+                            <p><strong className="text-silver-500">Original:</strong> <a className="underline hover:text-white" href={url.originalUrl}>{url.originalUrl}</a></p>
+                            <p><strong className="text-silver-500">Short:</strong> <a className="underline hover:text-white" href={`http://localhost:5000/u/${url.shortId}`} target="_blank" rel="noopener noreferrer">http://localhost:5000/u/{url.shortId}</a></p>
+                            <button
+                                onClick={() => handleCopy(`http://localhost:5000/u/${url.shortId}`)}
+                                className="mt-2 text-sm text-silver-500 hover:text-white underline"
+                            >
+                                📋 Copy to Clipboard
+                            </button>
+                            <div className="mt-4">
+                                <QRCodeCanvas value={`http://localhost:5000/u/${url.shortId}`} size={100} fgColor="#C0C0C0" bgColor="#000000" />
+                            </div>
+                            <p className="mt-2 text-sm text-silver-500"><strong>🔁 Clicks:</strong> {url.clicks}</p>
                         </div>
-                        <p className="mt-2"><strong>Clicks:</strong> {url.clicks}</p>
-                    </div>
-                ))}
-            </div>
-            <div className="bg-white p-4 rounded shadow">
-                <h2 className="text-xl font-semibold mb-4">Analytics</h2>
-                <Bar data={chartData} />
-            </div>
+                    ))}
+                </div>
+            </motion.div>
+
+            <motion.div
+                className="bg-black border border-silver-500 rounded-xl p-6 shadow-xl"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.8, duration: 1 }}
+            >
+                <h2 className="text-2xl font-semibold mb-4 text-silver-500">📊 Analytics Overview</h2>
+                <Bar
+                    data={chartData}
+                    options={{
+                        plugins: {
+                            legend: {
+                                labels: {
+                                    color: '#C0C0C0'
+                                }
+                            }
+                        },
+                        scales: {
+                            x: {
+                                ticks: { color: '#C0C0C0' },
+                                grid: { color: '#333' }
+                            },
+                            y: {
+                                ticks: { color: '#C0C0C0' },
+                                grid: { color: '#333' }
+                            }
+                        }
+                    }}
+                />
+            </motion.div>
+
+            <p className="mt-10 text-center text-sm text-silver-500 italic">
+                "Every click tells a story. Understand how your links perform and grow your digital presence."
+            </p>
         </div>
     );
 }

@@ -1,1 +1,6 @@
 @import "tailwindcss";
+
+.text-silver-500 {
+    color: #C0C0C0;
+    text-shadow: 0 0 10px rgba(192,192,192,0.7);
+}
