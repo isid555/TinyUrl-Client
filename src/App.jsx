@@ -10,9 +10,9 @@ export default function App() {
           <ToastContainer />
           <Router>
               <Routes>
-                  <Route path="/" element={<Login />} />
-                  <Route path="/register" element={<Register />} />
-                  <Route path="/dashboard" element={<Dashboard />} />
+                  {/* <Route path="/" element={<Login />} />
+                  <Route path="/register" element={<Register />} /> */}
+                  <Route path="/" element={<Dashboard />} />
               </Routes>
           </Router>
       </div>
