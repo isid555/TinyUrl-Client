@@ -5,18 +5,7 @@ Users can shorten long URLs, create custom aliases, generate QR codes, and view 
 
 ---
 
-## 🚀 Demo
 
-Frontend: https://tiny-url-ochre.vercel.app/ 
-
-
-Backend Test URL:
-1. https://turll.up.railway.app/ on Railway for higher performance 🚀.
-2. https://tinyurl-backend-i7ia.onrender.com/ on Render .
-
-Refer https://github.com/isid555/TinyUrl-Backend for backend server code !
-
----
 
 ## 🧠 Tech Stack
 
@@ -56,15 +45,15 @@ Refer https://github.com/isid555/TinyUrl-Backend for backend server code !
 ### 1. 🔐 Login Page
 Login using pre-built test credentials (JWT-based auth).  
 
-![img_2.png](img_2.png)
-
+![alt text](image-2.png)
 ---
 
 ### 2. 📊 Dashboard
 Fully responsive dashboard showing shortened links, QR codes, and click analytics.  
 
-![img.png](img.png) 
-![img_1.png](img_1.png)
+![alt text](image.png)
+
+![alt text](image-1.png)
 
 
 

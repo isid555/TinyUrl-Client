@@ -1,23 +1,32 @@
-
-import { Github } from 'lucide-react'; // or use react-icons if preferred
+import { Github, Heart } from 'lucide-react';
 
 export default function Footer() {
     return (
-        <footer className="mt-12 py-6 border-t border-silver-500 text-center text-silver-500 text-sm md:text-base px-4">
-            <div className="flex flex-col md:flex-row justify-center items-center gap-2">
-                <p>
-                    🛠️ Built by <span className="font-semibold text-white">Siddharth > </span>
-                </p>
-                <a
-                    href="https://github.com/isid555/TinyUrl-Client"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-1 hover:text-white transition"
-                >
-                    <Github size={24} />
-                    View on GitHub
-                </a>
-            </div>
+        <footer style={{
+            marginTop: '48px',
+            paddingTop: '24px',
+            borderTop: '1px solid var(--border-subtle)',
+            display: 'flex',
+            flexWrap: 'wrap',
+            justifyContent: 'center',
+            alignItems: 'center',
+            gap: '16px',
+            paddingBottom: '24px',
+        }}>
+            <p style={{ fontSize: '0.825rem', color: 'var(--text-muted)', display: 'flex', alignItems: 'center', gap: '4px' }}>
+                Built with <Heart size={13} style={{ color: 'var(--accent)' }} /> by
+                <span style={{ fontWeight: 600, color: 'var(--text-secondary)' }}> Siddharth</span>
+            </p>
+            <a
+                href="https://github.com/isid555/TinyUrl-Client"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-ghost"
+                style={{ fontSize: '0.8rem' }}
+            >
+                <Github size={15} />
+                GitHub
+            </a>
         </footer>
     );
 }
